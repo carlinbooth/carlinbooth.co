@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/6f8abaa287.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>COMING SOON...</title>
+        <meta name="description" content="COMING SOON...">
+        <link rel="icon" href="logo.png">
+    </head>
+    <body>
+    <a onclick="enterportal()"id="enter-portal">COMING SOON...</a>
+    <script>
+        function enterportal(){
+            var audio = new Audio('audio.mp3');
+            audio.play();
+            document.getElementById('body-div').style.display = "inline-block"
+            document.getElementById('enter-portal').style.display = "none";
+        }
+    </script>
+    </body>
+    <style>
+        *{
+            font-family:monospace
+        }
+        #quote{
+            color: rgb(0, 0, 0);
+            opacity: 50%;
+            animation-name: fade1;
+            animation-duration: 50s;
+    
+        }
+
+        body{
+            background: rgb(0, 0, 0);
+        }
+        #body-div{
+            display: none;
+            animation-name: fade;
+            animation-duration: 4s;
+        }
+
+        .ray{
+            color: rgb(255, 255, 255);
+            position: absolute;
+            margin-top: 350px;
+            margin-bottom: 1000px;
+            margin-left: 985px;
+            margin-left: 1000x;
+        }
+
+        #enter-portal{
+            color:rgb(21, 255, 0);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-decoration: none;
+            text-shadow: 0px 0px 10px rgb(0, 0, 0);
+            display: inline-block;
+            font-size: 20px;
+
+        }
+        #enter-portal:hover{
+            cursor: pointer;
+        }
+        #background-video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .socials-div{
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            /*width: 95%; */
+            z-index: 2;
+            background: transparent;
+            box-shadow: 0px 0px 10px 10px black;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            animation: bordercolor infinite;
+            animation-duration: 10s;
+        }
+        .socials-div-mobile{
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -10%);
+            text-align: center;
+            z-index: 2;
+            padding: 10px;
+            display: none;
+            background: transparent;
+            box-shadow: 0px 0px 10px 10px black;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            animation: bordercolor infinite;
+            animation-duration: 10s;
+            
+        }
+        a{
+            color:white;
+            font-size: 60px;
+            margin-left: 20px;
+            transition: ease-out .01s;
+            z-index: 2;
+            background: transparent;
+        }
+        i{
+            animation: iconcolor infinite forwards;
+            animation-duration: 10s;
+        }
+        img{
+            animation: iconcolor infinite forwards;
+            animation-duration: 10s;
+        }
+        i:hover{
+            transform: scale(1.07);
+            transition: ease-in .01s;
+            cursor: pointer;
+        }
+        img:hover{
+            transform: scale(1.07);
+            transition: ease-in .01s;
+            cursor: pointer;
+        }
+        @keyframes fade{
+            0% {opacity: 0%;}
+            100% {opacity: 100%;}
+        }
+        @keyframes fade1{
+            0% {opacity: 0%;}
+            50% {opacity: 50%;}
+        }
+        
+        @media (min-width: 100px) and (max-width: 924px) {
+        #background-video{
+            display: none;
+        }
+        body{
+            background: rgb(0, 0, 0);
+        }
+        .socials-div-mobile{
+            display: inline-block;
+            box-shadow: 0px 0px 10px 10px #0a0a0a;
+        }
+        i{
+            margin-bottom: 20px;
+            text-shadow: 0px 0px 10px rgb(0, 0, 0);
+            animation: iconcolor infinite forwards;
+            animation-duration: 10s;
+        }
+        .socials-div{
+            display: none;
+        }
+        a{
+            margin-left: 0px;
+        }
+        
+        }
+    </style>
+</html>
