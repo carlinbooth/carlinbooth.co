@@ -1,171 +1,336 @@
-<html>
-    <head>
-        <script src="https://kit.fontawesome.com/6f8abaa287.js" crossorigin="anonymous"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>COMING SOON...</title>
-        <meta name="description" content="COMING SOON...">
-        <link rel="icon" href="logo.png">
-    </head>
-    <body>
-        <img src="embed.png" style="display: none;">
-    <a onclick="enterportal()"id="enter-portal">COMING SOON...</a>
-    <script>
-        function enterportal(){
-            var audio = new Audio('audio.mp3');
-            audio.play();
-            document.getElementById('body-div').style.display = "inline-block"
-            document.getElementById('enter-portal').style.display = "none";
-        }
-    </script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlin Booth - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
+
     <style>
-        *{
-            font-family:monospace
-        }
-        #quote{
-            color: rgb(0, 0, 0);
-            opacity: 50%;
-            animation-name: fade1;
-            animation-duration: 50s;
-    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        body{
-            background: rgb(0, 0, 0);
-        }
-        #body-div{
-            display: none;
-            animation-name: fade;
-            animation-duration: 4s;
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
         }
 
-        .ray{
-            color: rgb(255, 255, 255);
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            color: #00FF00;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .countdown {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .digit-container {
+            position: relative;
+            width: 40px;
+            height: 70px;
+            margin: 0 4px;
+        }
+
+        .segment {
             position: absolute;
-            margin-top: 350px;
-            margin-bottom: 1000px;
-            margin-left: 985px;
-            margin-left: 1000x;
+            background: rgba(0, 255, 0, 0.03);
+            transition: background-color 0.1s ease;
         }
 
-        #enter-portal{
-            color:rgb(21, 255, 0);
-            position: fixed;
+        .segment.active {
+            background: #00FF00;
+            box-shadow: 0 0 10px #00FF00;
+        }
+
+        .segment-a {
+            top: 0;
+            left: 5px;
+            right: 5px;
+            height: 6px;
+        }
+
+        .segment-b {
+            top: 5px;
+            right: 0;
+            width: 6px;
+            height: 25px;
+        }
+
+        .segment-c {
+            bottom: 5px;
+            right: 0;
+            width: 6px;
+            height: 25px;
+        }
+
+        .segment-d {
+            bottom: 0;
+            left: 5px;
+            right: 5px;
+            height: 6px;
+        }
+
+        .segment-e {
+            bottom: 5px;
+            left: 0;
+            width: 6px;
+            height: 25px;
+        }
+
+        .segment-f {
+            top: 5px;
+            left: 0;
+            width: 6px;
+            height: 25px;
+        }
+
+        .segment-g {
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-decoration: none;
-            text-shadow: 0px 0px 10px rgb(0, 0, 0);
-            display: inline-block;
-            font-size: 20px;
+            left: 5px;
+            right: 5px;
+            height: 6px;
+            transform: translateY(-50%);
+        }
 
+        .colon {
+            width: 6px;
+            height: 6px;
+            background: #00FF00;
+            border-radius: 50%;
+            margin: 0 8px;
+            box-shadow: 0 0 10px #00FF00;
+            animation: blink 1s infinite;
         }
-        #enter-portal:hover{
-            cursor: pointer;
+
+        .colon:nth-child(2) {
+            margin-top: 15px;
         }
-        #background-video {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
+
+        .countdown-label {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .timezone {
+            margin-top: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer {
             position: fixed;
+            bottom: 20px;
             left: 0;
             right: 0;
-            top: 0;
-            bottom: 0;
-            z-index: -1;
-        }
-        .socials-div{
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
-            /*width: 95%; */
-            z-index: 2;
-            background: transparent;
-            box-shadow: 0px 0px 10px 10px black;
-            padding: 20px;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            animation: bordercolor infinite;
-            animation-duration: 10s;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
         }
-        .socials-div-mobile{
-            position: absolute;
-            top: 25%;
-            left: 50%;
-            transform: translate(-50%, -10%);
-            text-align: center;
-            z-index: 2;
-            padding: 10px;
-            display: none;
-            background: transparent;
-            box-shadow: 0px 0px 10px 10px black;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            animation: bordercolor infinite;
-            animation-duration: 10s;
-            
+
+        .footer a {
+            color: #00FF00;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1;
         }
-        a{
-            color:white;
-            font-size: 60px;
-            margin-left: 20px;
-            transition: ease-out .01s;
-            z-index: 2;
-            background: transparent;
+
+        .footer a i {
+            font-size: 0.8em;
+            position: relative;
+            top: -0.05em;
         }
-        i{
-            animation: iconcolor infinite forwards;
-            animation-duration: 10s;
+
+        .footer a:hover {
+            opacity: 0.8;
         }
-        img{
-            animation: iconcolor infinite forwards;
-            animation-duration: 10s;
+
+        .digit-group {
+            display: flex;
+            margin: 0 8px;
+            align-items: center;
         }
-        i:hover{
-            transform: scale(1.07);
-            transition: ease-in .01s;
-            cursor: pointer;
+
+        @media (max-width: 600px) {
+            .countdown {
+                gap: 0.5rem;
+            }
+
+            .digit-container {
+                width: 30px;
+                height: 50px;
+                margin: 0 3px;
+            }
+
+            .digit-group {
+                margin: 0 6px;
+            }
+
+            .colon {
+                width: 4px;
+                height: 4px;
+                margin: 0 6px;
+            }
+
+            .colon:nth-child(2) {
+                margin-top: 10px;
+            }
+
+            .countdown-label {
+                font-size: 0.8rem;
+            }
+
+            .footer {
+                font-size: 0.8rem;
+                bottom: 10px;
+            }
         }
-        img:hover{
-            transform: scale(1.07);
-            transition: ease-in .01s;
-            cursor: pointer;
-        }
-        @keyframes fade{
-            0% {opacity: 0%;}
-            100% {opacity: 100%;}
-        }
-        @keyframes fade1{
-            0% {opacity: 0%;}
-            50% {opacity: 50%;}
-        }
-        
-        @media (min-width: 100px) and (max-width: 924px) {
-        #background-video{
-            display: none;
-        }
-        body{
-            background: rgb(0, 0, 0);
-        }
-        .socials-div-mobile{
-            display: inline-block;
-            box-shadow: 0px 0px 10px 10px #0a0a0a;
-        }
-        i{
-            margin-bottom: 20px;
-            text-shadow: 0px 0px 10px rgb(0, 0, 0);
-            animation: iconcolor infinite forwards;
-            animation-duration: 10s;
-        }
-        .socials-div{
-            display: none;
-        }
-        a{
-            margin-left: 0px;
-        }
-        
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
     </style>
+</head>
+
+<body>
+    <img src="embed.png" style="display: none;">
+    <div class="container">
+        <h1>COMING SOON</h1>
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="digit-group" id="days">
+                    <div class="digit-container"><div class="segment segment-a"></div><div class="segment segment-b"></div><div class="segment segment-c"></div><div class="segment segment-d"></div><div class="segment segment-e"></div><div class="segment segment-f"></div><div class="segment segment-g"></div></div>
+                    <div class="digit-container"><div class="segment segment-a"></div><div class="segment segment-b"></div><div class="segment segment-c"></div><div class="segment segment-d"></div><div class="segment segment-e"></div><div class="segment segment-f"></div><div class="segment segment-g"></div></div>
+                </div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="colon-container"><div class="colon"></div><div class="colon"></div></div>
+            <div class="countdown-item">
+                <div class="digit-group" id="hours">
+                    <div class="digit-container"><div class="segment segment-a"></div><div class="segment segment-b"></div><div class="segment segment-c"></div><div class="segment segment-d"></div><div class="segment segment-e"></div><div class="segment segment-f"></div><div class="segment segment-g"></div></div>
+                    <div class="digit-container"><div class="segment segment-a"></div><div class="segment segment-b"></div><div class="segment segment-c"></div><div class="segment segment-d"></div><div class="segment segment-e"></div><div class="segment segment-f"></div><div class="segment segment-g"></div></div>
+                </div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="colon-container"><div class="colon"></div><div class="colon"></div></div>
+            <div class="countdown-item">
+                <div class="digit-group" id="minutes">
+                    <div class="digit-container"><div class="segment segment-a"></div><div class="segment segment-b"></div><div class="segment segment-c"></div><div class="segment segment-d"></div><div class="segment segment-e"></div><div class="segment segment-f"></div><div class="segment segment-g"></div></div>
+                    <div class="digit-container"><div class="segment segment-a"></div><div class="segment segment-b"></div><div class="segment segment-c"></div><div class="segment segment-d"></div><div class="segment segment-e"></div><div class="segment segment-f"></div><div class="segment segment-g"></div></div>
+                </div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="colon-container"><div class="colon"></div><div class="colon"></div></div>
+            <div class="countdown-item">
+                <div class="digit-group" id="seconds">
+                    <div class="digit-container"><div class="segment segment-a"></div><div class="segment segment-b"></div><div class="segment segment-c"></div><div class="segment segment-d"></div><div class="segment segment-e"></div><div class="segment segment-f"></div><div class="segment segment-g"></div></div>
+                    <div class="digit-container"><div class="segment segment-a"></div><div class="segment segment-b"></div><div class="segment segment-c"></div><div class="segment segment-d"></div><div class="segment segment-e"></div><div class="segment segment-f"></div><div class="segment segment-g"></div></div>
+                </div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        <div class="timezone">Melbourne - AEST</div>
+    </div>
+
+    <script>
+        const launchDate = new Date('2025-06-09T00:00:00+10:00');
+        const digitPatterns = {
+            '0': ['a', 'b', 'c', 'd', 'e', 'f'],
+            '1': ['b', 'c'],
+            '2': ['a', 'b', 'd', 'e', 'g'],
+            '3': ['a', 'b', 'c', 'd', 'g'],
+            '4': ['b', 'c', 'f', 'g'],
+            '5': ['a', 'c', 'd', 'f', 'g'],
+            '6': ['a', 'c', 'd', 'e', 'f', 'g'],
+            '7': ['a', 'b', 'c'],
+            '8': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+            '9': ['a', 'b', 'c', 'd', 'f', 'g']
+        };
+
+        function updateDigit(digitContainer, value) {
+            const segments = digitContainer.querySelectorAll('.segment');
+            const pattern = digitPatterns[value] || [];
+            segments.forEach(segment => {
+                const segmentClass = segment.className.split(' ')[1];
+                if (pattern.includes(segmentClass.split('-')[1])) {
+                    segment.classList.add('active');
+                } else {
+                    segment.classList.remove('active');
+                }
+            });
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = launchDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            const daysStr = days.toString().padStart(2, '0');
+            const hoursStr = hours.toString().padStart(2, '0');
+            const minutesStr = minutes.toString().padStart(2, '0');
+            const secondsStr = seconds.toString().padStart(2, '0');
+            const daysContainers = document.querySelectorAll('#days .digit-container');
+            const hoursContainers = document.querySelectorAll('#hours .digit-container');
+            const minutesContainers = document.querySelectorAll('#minutes .digit-container');
+            const secondsContainers = document.querySelectorAll('#seconds .digit-container');
+            updateDigit(daysContainers[0], daysStr[0]);
+            updateDigit(daysContainers[1], daysStr[1]);
+            updateDigit(hoursContainers[0], hoursStr[0]);
+            updateDigit(hoursContainers[1], hoursStr[1]);
+            updateDigit(minutesContainers[0], minutesStr[0]);
+            updateDigit(minutesContainers[1], minutesStr[1]);
+            updateDigit(secondsContainers[0], secondsStr[0]);
+            updateDigit(secondsContainers[1], secondsStr[1]);
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+
 </html>
